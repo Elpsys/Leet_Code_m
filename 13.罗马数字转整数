@@ -1,0 +1,23 @@
+class Solution {
+public:
+    int romanToInt(string s) {
+        unordered_map<char, int> mp;
+        tie(mp['I'], mp['V'], mp['X'], mp['L'], mp['C'], mp['D'], mp['M']) = tuple{1, 5, 10, 50, 100, 500, 1000};
+        int ans = 0;
+        char last = ' ';
+        for(int i = 0; i < s.size(); i++)
+        {
+            int value = mp[s[i]];
+            // 这里主要用到了，当字母所代表值在左边比右边小，需要减去当前值，右边大于等于左边则加
+            if(i < s.size()-1 && value < mp[s[i+1]])
+            {
+                ans -= value;
+            }
+            else
+            {
+                ans += value;
+            }
+        }
+        return ans;
+    }
+};
