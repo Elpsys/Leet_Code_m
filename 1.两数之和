@@ -1,0 +1,20 @@
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        // 无序哈希表
+        unordered_map<int, int> ht;
+        for(int i = 0; i < nums.size(); i ++)
+        {
+            // 判断哈希表中是否有目标值
+            auto it = ht.find(target - nums[i]);
+            // 直到找到该值
+            if(it != ht.end())
+            {
+                return{it->second, i}; 
+            }
+            // 若没有目标值就将该值与下标存入
+            ht[nums[i]] = i;
+        }
+        return {};
+    }
+};
