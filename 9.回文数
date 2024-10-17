@@ -1,0 +1,33 @@
+// int转换为字符串，然后在进行比对，复杂度为O(n)
+class Solution {
+public:
+    bool isPalindrome(int x) {
+        string a = to_string(x);
+        string b = {a[a.size()-1]};
+        for(int i = a.size()-2; i >= 0; i --)
+        {
+            b += a[i];
+        }
+        return !a.compare(b);
+    }
+};
+// 通过计算，只比较数字本身的一半进行确定
+class Solution {
+public:
+    bool isPalindrome(int x) {
+        int revers = 0;
+        // 首先负数和数字尾部为0肯定不为回文数
+        if(x < 0 || (x % 10 == 0 && x != 0))
+        {
+            return false;
+        }
+        // 当x大于revers，则一半数字翻转结束
+        while(x > revers)
+        {
+            revers = revers * 10 + x % 10;
+            x /= 10;
+        }
+
+        return revers == x || x == revers / 10;
+    }
+};
