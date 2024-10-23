@@ -1,0 +1,22 @@
+class Solution {
+public:
+    int removeDuplicates(vector<int>& nums) {
+        int n = nums.size();
+        if(n == 0)
+        {
+            return 0;
+        }
+        int fast = 1, slow = 1;
+        // 通过赋值进行删除操作，开始时从1下标开始，每当前边元素不等于后边元素，就让slow指针所在位置赋值fast指针所在位置的值，并将slow向前移动
+        while(fast < n)
+        {
+            if(nums[fast] != nums[fast-1])
+            {
+                nums[slow] = nums[fast];
+                slow ++;
+            }
+            fast++;
+        }
+        return slow;
+    }
+};
