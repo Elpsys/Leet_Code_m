@@ -1,0 +1,17 @@
+class Solution {
+public:
+    int removeElement(vector<int>& nums, int val) {
+        int left = 0, right = nums.size();
+        // 这里相当于是如果nums[left]等于val值，我们就将该值已到后边，并将right值减小，再次对比nums[left]是否等于val，然后在进行left的移动，否则继续移动right
+        while (left < right) {
+            if (nums[left] == val) {
+                nums[left] = nums[right - 1];
+                right--;
+            } else {
+                left++;
+            }
+            cout << nums[0];
+        }
+        return left;
+    }
+};
