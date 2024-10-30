@@ -1,0 +1,20 @@
+class Solution {
+  public:
+    string addBinary(string a, string b) {
+        string str;
+        int carry = 0;
+        for(int i = a.size() - 1, j = b.size() - 1; i >= 0 || j >= 0 || carry; --i, --j) {
+            // 当没超过数组的边界时，就按照数组内的值进行计算
+            // 如果某个大小超过数组边界，就自动将该位设置为0进行计算
+            // 计算的时候利用ASCII码，通过减‘0’操作，获得当前值进行进位等运算
+            int x = i < 0 ? 0 : a[i] - '0';
+            int y = j < 0 ? 0 : b[j] - '0';
+            // 取余值为当前位
+            int sum = (x + y + carry) % 2;
+            // 除法值为进位
+            carry = (x + y + carry) / 2;
+            str.insert(0, 1, sum + '0');
+        }
+        return str;
+    }
+};
