@@ -1,0 +1,23 @@
+class Solution {
+public:
+    int climbStairs(int n) {
+        // 爬楼梯问题，这里确定了可以进行的步数为1或2
+        // 根据规律发现，第1层有1种方法，第2层有2种方法，第3层有3种方法，第4层有5种方法，
+        // 可以发现，后一层的爬楼梯方法的前两层相加，发现像一个斐波那契数列
+        // 这里dp[i]表示i为层数，dp[i]为方法数
+        if(n <= 1)
+        {
+            return n;
+        }
+        int dp[3];
+        dp[1] = 1;
+        dp[2] = 2;
+        for(int i = 3; i <= n; i ++)
+        {
+            int sum = dp[1] + dp[2];
+            dp[1] = dp[2];
+            dp[2] = sum;
+        }
+        return dp[2];
+    }
+};
