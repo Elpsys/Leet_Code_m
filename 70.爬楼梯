@@ -21,3 +21,25 @@ public:
         return dp[2];
     }
 };
+
+// 完全体的方法，可以应对更多情况，比如爬楼梯的方法为1-m,只需要设置背包内的值即可
+class Solution {
+public:
+    int climbStairs(int n) {
+        vector<int> dp(n+1, 0);
+        // 这里初始化dp[0]为1而不是0，是为了后续递加过程使用
+        dp[0] = 1;
+        for(int i = 1; i <= n; i ++)    //这里遍历整个背包（楼层）
+        {
+            for(int j = 1; j <= 2; j ++)    //这里遍历背包里的东西（爬楼的方式）
+            {
+                // 这里就相当于把，所有可能得结果都递加了一遍
+                if(i-j >= 0)
+                {
+                    dp[i] += dp[i-j];
+                }
+            }
+        }
+        return dp[n];
+    }
+};
