@@ -1,0 +1,23 @@
+class Solution {
+public:
+    bool isSameTree(TreeNode* p, TreeNode* q) {
+        // 进行如下判断，首先判断两边是否都为空，如果是则返回true
+        // 判断是否其中一个为空，而另一个不空，是则返回false
+        // 如果都不空，则判断值是否相同，不是则返回fasle
+        // 如果判断完当前都相同，则递归执行开始遍历，左子树如果都相同，则一直为true
+        // 如果存在不同则会返回false
+        if(p==nullptr && q==nullptr)
+        {
+            return true;
+        }
+        if(p==nullptr || q==nullptr)
+        {
+            return false;
+        }
+        if(p->val != q->val)
+        {
+            return false;
+        }
+        return isSameTree(p->left, q->left) && isSameTree(p->right, q->right);
+    }
+};
