@@ -1,0 +1,17 @@
+// 不用额外的存储空间，从后向前加即可得到当前行的杨辉三角形值
+class Solution {
+public:
+    vector<int> getRow(int rowIndex) {
+        vector<int> sol(rowIndex+1);
+        sol[0] = 1;
+        for(int i = 1; i <= rowIndex; i ++)
+        {
+            // 0处的值恒定为1
+            for(int j = i; j>0; j --)
+            {
+                sol[j] += sol[j-1];
+            }
+        }
+        return sol;
+    }
+};
