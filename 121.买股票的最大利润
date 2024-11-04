@@ -1,0 +1,16 @@
+// 动态规划
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
+        // 只计算每天，然后按天取最大值
+        int cost=INT_MAX, profit = 0;
+        for(int price : prices)
+        {
+            // 取当日最低成本
+            cost = min(cost, price);
+            // 取当日利润最高
+            profit = max(profit, price-cost);
+        }
+        return profit;
+    }
+};
