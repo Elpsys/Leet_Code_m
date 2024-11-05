@@ -1,0 +1,18 @@
+class Solution {
+public:
+    string convertToTitle(int columnNumber) {
+        // 该题目相当于26进制，让A从0开始，这样到26的时候刚好为AA，25为Z
+        // 由于每次计算时，给定的值col需满足新的映射关系，需减去1（因为是从0开始的）
+        int t = columnNumber - 1;
+        string res;
+        while(t >= 0)
+        {
+            // 满26进一位，这样写不需要翻转res，相当于把每次的加在前边
+            res = char(t % 26 + 'A') + res;
+            // 更新  新的col值
+            t = t / 26 - 1;
+        }
+        // reverse(res.begin(), res.end());
+        return res;
+    }
+};
