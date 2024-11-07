@@ -1,0 +1,29 @@
+class Solution {
+public:
+// 该函数获得下一次按规则运算的数值
+// 通过除法和取余进行拆分操作
+    int bitdivide(int m)
+    {
+       int sum = 0;
+       while(m > 0)
+       {
+            int a = m % 10;
+            m = m / 10;
+            sum += a * a;
+       }
+       return sum;
+    }
+
+    bool isHappy(int n) {
+        // 利用快慢指针，快的总比慢的先到1的特点
+        // 类似于循环链表，如果不存在1，二者迟早会相遇
+        int fast = bitdivide(n), slow = n;
+        // 初始化时快的在慢的前边，慢的走一格，快的走两格
+        while(fast != slow && fast != 1)
+        {
+            slow = bitdivide(slow);
+            fast = bitdivide(bitdivide(fast));
+        }
+        return fast == 1;
+    }
+};
