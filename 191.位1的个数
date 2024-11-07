@@ -1,0 +1,31 @@
+class Solution {
+public:
+    int hammingWeight(int n) {
+        // 位运算，最基础思路利用n&1判断最低有效位是1还是0
+        // 一直到n为0即可退出
+        int sol = 0;
+        while(n != 0)
+        {
+            if(n & 1 == 1)
+            {
+                sol ++;
+            }
+            n >>= 1;
+        }
+        return sol;
+    }
+
+
+    // 利用位运算n-1后将1的右边都变为0
+    // 统计每次运算中1的值，运算几次，就出现了几次1
+    int hammingWeight_new(int n)
+    {
+        int sol = 0;
+        while(n!=0)
+        {
+            n = n&(n-1);
+            sol ++;
+        }
+        return sol;
+    }
+};
