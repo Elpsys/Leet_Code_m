@@ -1,4 +1,4 @@
-/**
+/**  头插法
  * Definition for singly-linked list.
  * struct ListNode {
  *     int val;
@@ -43,5 +43,35 @@ public:
         return cur;
     
     
+    }
+};
+
+
+/**  递归法
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+// 这个迭代过程相当于先遍历到最后，然后更改next的指向最后返回头结点
+    ListNode* iter(ListNode* cur, ListNode* pre)
+    {
+        if(cur == nullptr)
+        {
+            return pre;
+        }
+        // 这个res在最后一次递归调用后就保持不变，一直为最后一个节点，即反转后的头结点
+        ListNode* res = iter(cur->next, cur);
+        cur->next = pre;
+        return res;
+    }
+    ListNode* reverseList(ListNode* head) {
+        return iter(head, nullptr);
     }
 };
